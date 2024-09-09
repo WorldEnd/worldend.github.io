@@ -32,6 +32,8 @@ timezone: EST5EDT # see https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 collections:
   releases:
     output: true
+  volume_text:
+    output: true
 # collections_dir: collections
 
 ## => Author and Social
