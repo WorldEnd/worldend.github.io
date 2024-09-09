@@ -14,16 +14,16 @@ These PDFs are best viewed in a two-page layout, starting with the cover on the 
 [^1]: Adobe Acrobat Reader, Mac Preview, Firefox (PDF.js), SumatraPDF, Foxit, Okular, Evince, and Zathura all support this functionality. While Google Chrome / Chromium can display pages side-by-side, it can't put the cover on the right side. If you prefer using Chrome, you can use the print dialog to save a new PDF without the cover.
 
 # Volume 1
-![Volume 1]({{ "/assets/images/cover_v01.png" | relative_url }}){: style="width: 200px; height: auto;" .border .shadow .rounded}
+![Volume 1]({{ "/assets/images/cover_v01.png" | relative_url }}){:.image--md.border.shadow.rounded}
 
-Download Link
+[Download Link](#){:.button.button--primary.button--rounded}
 
 # Volume 2
-![Volume 2]({{ "/assets/images/cover_v02.png" | relative_url }}){: style="width: 200px; height: auto;" .border .shadow .rounded}
+![Volume 2]({{ "/assets/images/cover_v02.png" | relative_url }}){:.image--md.border.shadow.rounded}
 
-Download Link
+[Download Link](#){:.button.button--primary.button--rounded}
 
 # Volume 3
-![Volume 3]({{ "/assets/images/cover_v03.png" | relative_url }}){: style="width: 200px; height: auto;" .border .shadow .rounded}
+![Volume 3]({{ "/assets/images/cover_v03.png" | relative_url }}){:.image--md.border.shadow.rounded}
 
-Download Link
+[Download Link](#){:.button.button--primary.button--rounded}

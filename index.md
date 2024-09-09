@@ -10,7 +10,7 @@ You can browse and download the files on the [Releases]({{ "/releases.html" | re
 
 These PDFs and EPUBs are generated automatically. If you want to contribute to the formatting or revise the text, feel free to contribute to our [GitHub repository](https://github.com/WorldEnd/worldend-formatting). You can also contribute to the [GitHub repository for this website](https://github.com/WorldEnd/worldend.github.io).
 
-# Changes from Orlandri Translation
+## Changes from Orlandri Translation
 -   Use Yen Press names
 -   Insert and chapter images are in English
 -   Minor edits to the text

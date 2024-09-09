@@ -10,16 +10,16 @@ This printable version is specifically formatted for printing a perfect-bound bo
 <!-- more -->
 
 # Volume 1
-![Volume 1]({{ "/assets/images/cover_v01.png" | relative_url }}){: style="width: 200px; height: auto;" .border .shadow .rounded}
+![Volume 1]({{ "/assets/images/cover_v01.png" | relative_url }}){:.image--md.border.shadow.rounded}
 
-Download Link
+[Download Link](#){:.button.button--primary.button--rounded}
 
 # Volume 2
-![Volume 2]({{ "/assets/images/cover_v02.png" | relative_url }}){: style="width: 200px; height: auto;" .border .shadow .rounded}
+![Volume 2]({{ "/assets/images/cover_v02.png" | relative_url }}){:.image--md.border.shadow.rounded}
 
-Download Link
+[Download Link](#){:.button.button--primary.button--rounded}
 
 # Volume 3
-![Volume 3]({{ "/assets/images/cover_v03.png" | relative_url }}){: style="width: 200px; height: auto;" .border .shadow .rounded}
+![Volume 3]({{ "/assets/images/cover_v03.png" | relative_url }}){:.image--md.border.shadow.rounded}
 
-Download Link
+[Download Link](#){:.button.button--primary.button--rounded}
