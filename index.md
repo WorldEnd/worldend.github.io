@@ -10,22 +10,21 @@ You can browse and download the files on the [Releases]({{ "/releases.html" | re
 
 These PDFs and EPUBs are generated automatically. If you want to contribute to the formatting or revise the text, feel free to contribute to our [GitHub repository](https://github.com/WorldEnd/worldend-formatting). You can also contribute to the [GitHub repository for this website](https://github.com/WorldEnd/worldend.github.io).
 
-## Changes from Orlandri Translation
-- Use Yen Press names
-- Insert and chapter images are in English
-- Minor edits to the text
-- Follow the Yen Press format as closely as possible, including:
-  - Indented paragraphs
-  - Table of Contents (TOC)
-  - PDF font matches that of physical volumes
-  - Spacing matches Yen Press or differs by no more than 2 millimeters
-  - No space after ellipses (…)
-  - No space around em dashes (—)
-  - Capitalization for stutters matches Yen Press (e.g., Wi-widow)
-  - Contractions use closing apostrophes (’)
+# Changes from Orlandri Translation
+-   Use Yen Press names
+-   Insert and chapter images are in English
+-   Minor edits to the text
+-   Follow the Yen Press format as closely as possible, including:
+    -   Indented paragraphs
+    -   Table of Contents (TOC)
+    -   PDF font matches that of physical volumes
+    -   Spacing matches Yen Press or differs by no more than 2 millimeters
+    -   No space after ellipses (...)
+    -   No space around em dashes (---)
+    -   Capitalization for stutters matches Yen Press (e.g., Wi-widow)
+    -   Contractions use closing apostrophes (e.g., move on &rsquo;em)
 
 ## Screenshots
-
 ### PDF
 **NOTE:** The actual PDF pages are singular; I just displayed them side-by-side.
 {:.info}
@@ -50,23 +49,9 @@ These PDFs and EPUBs are generated automatically. If you want to contribute to t
 ![Ornament]({{ '/assets/screenshots/epub/ornament.png' | relative_url }}){: .image--xl .border .shadow .rounded}
 ![Table of Contents]({{ '/assets/screenshots/epub/toc.png' | relative_url }}){: .image--xl .border .shadow .rounded}
 
-<!-- <div align="center"> -->
-  <!-- <img src="{{ "/assets/screenshots/epub/chapterbeginning.png" | relative_url }}" alt="Beginning of Chapter" width="400px" class="image--xl border shadow rounded"> -->
-  <!-- <img src="{{ "/assets/screenshots/epub/part.png" | relative_url }}" alt="Part" width="400px" class="image--xl border shadow rounded"> -->
-  <!-- <img src="{{ "/assets/screenshots/epub/ornament.png" | relative_url }}" alt="Ornament" width="400px" class="image--xl border shadow rounded"> -->
-  <!-- <img src="{{ "/assets/screenshots/epub/toc.png" | relative_url }}" alt="Table of Contents" width="400px" class="image--xl border shadow rounded"> -->
-<!-- </div> -->
-
 #### Kindle
 ![Beginning of Chapter]({{ '/assets/screenshots/epub/kindle/chapterbeginning.png' | relative_url }}){: .image--xl .border .shadow .rounded}
 ![Table of Contents]({{ '/assets/screenshots/epub/kindle/toc.png' | relative_url }}){: .image--xl .border .shadow .rounded}
 
 ![Home Page]({{ '/assets/screenshots/epub/kindle/home.png' | relative_url }}){: .image--xl .border .shadow .rounded}
 ![Library Page]({{ '/assets/screenshots/epub/kindle/library.png' | relative_url }}){: .image--xl .border .shadow .rounded}
-
-<!-- <div align="center"> -->
-<!--   <img src="{{ "/assets/screenshots/epub/kindle/chapterbeginning.png" | relative_url }}" alt="Beginning of Chapter" width="400px"> -->
-<!--   <img src="{{ "/assets/screenshots/epub/kindle/toc.png" | relative_url }}" alt="Table of Contents" width="400px"> -->
-<!--   <img src="{{ "/assets/screenshots/epub/kindle/home.png" | relative_url }}" alt="Home Page" width="400px"> -->
-<!--   <img src="{{ "/assets/screenshots/epub/kindle/library.png" | relative_url }}" alt="Library Page" width="400px"> -->
-<!-- </div> -->
