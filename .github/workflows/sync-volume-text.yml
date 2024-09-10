@@ -40,14 +40,14 @@ jobs:
 
       - name: Copy Files
         run: |
-          mkdir -p worldend.github.io/_volume_text
+          mkdir -p worldend.github.io/_releases
 
-          output_file="worldend.github.io/volume_text.md"
+          output_file="worldend.github.io/releases.md"
           {
               echo "---"
               echo "layout: article"
-              echo "title: Volume Text"
-              echo "key: page-volume-text"
+              echo "title: Releases"
+              echo "key: page-releases"
               echo "---"
               echo ""
           } >"$output_file"
@@ -62,10 +62,18 @@ jobs:
               mkdir -p "$image_dest_dir"
               cp -r "$volume_dir/Images/Chapter/"* "$image_dest_dir"
 
-              dest_volume_dir="worldend.github.io/_volume_text/volume_${padded_volume}"
+              dest_volume_dir="worldend.github.io/_releases/volume_${padded_volume}"
               mkdir -p "$dest_volume_dir"
 
-              echo "## Volume $volume" >>"$output_file"
+              {
+                  echo "## Volume $volume"
+                  echo ""
+                  echo "![Volume $volume]({{ '/assets/images/cover_v$padded_volume.png' | relative_url }}){:.image.image--lg.border.shadow.rounded}"
+                  echo ""
+                  echo "[Download EPUB](#){:.button.button--primary.button--rounded}"
+                  echo "[Download PDF](#){:.button.button--primary.button--rounded}"
+                  echo ""
+              } >>"$output_file"
 
               chapter_count=$(yq e '.chapters | length' "$config_file")
 
@@ -102,7 +110,7 @@ jobs:
                           cat <(echo -e "$header") "$file" >"$dest_volume_dir/$(basename "$file")"
                       fi
 
-                      file_path="{{ '/volume_text/' | relative_url }}volume_${padded_volume}/$(basename "$file" .md).html"
+                      file_path="{{ '/releases/' | relative_url }}volume_${padded_volume}/$(basename "$file" .md).html"
 
                       # Put the link in the chapter if there are no parts
                       if [[ $chapter_printed == false ]]; then
@@ -116,12 +124,14 @@ jobs:
 
                       # Print link to parts
                       if [[ $part_title != "null" ]]; then
-                          echo "  - [Part $part_counter \| $part_title]($file_path)" >>"$output_file"
+                          echo "    - [Part $part_counter \| $part_title]($file_path)" >>"$output_file"
                       fi
 
                       part_counter=$((part_counter + 1))
+
                   done
               done
+              echo "" >>"$output_file"
           done
 
       - name: Commit

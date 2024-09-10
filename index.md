@@ -4,9 +4,11 @@ title: Welcome
 key: page-home
 ---
 
-This site provides PDFs and EPUBs for *WorldEnd2 (Suka Moka)* that are designed to match the format of the official Yen Press releases of *WorldEnd (Suka Suka)*. We try to make both the names and the text layout consistent with the official releases.
+This site provides PDFs, EPUBs, and a web version of *WorldEnd2 (Suka Moka)* that are designed to match the format of the official Yen Press releases of *WorldEnd (Suka Suka)*. We try to make both the names and the text layout consistent with the official releases. The web version uses Yen Press names, but the formatting won't match the official print or e-book volumes.
 
-You can browse and download the files on the [Releases]({{ "/releases.html" | relative_url }}) page.
+You can read online or download the files on the [Releases]({{ "/releases.html" | relative_url }}) page.
+
+For details on the differences between EPUBs and PDFs, visit the [Info]({{ "/info.html" | relative_url }}) page.
 
 These PDFs and EPUBs are generated automatically. If you want to contribute to the formatting or revise the text, feel free to contribute to our [GitHub repository](https://github.com/WorldEnd/worldend-formatting). You can also contribute to the [GitHub repository for this website](https://github.com/WorldEnd/worldend.github.io).
 
