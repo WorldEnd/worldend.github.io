@@ -43,12 +43,14 @@ jobs:
           mkdir -p worldend.github.io/_volume_text
 
           output_file="worldend.github.io/volume_text.md"
-          echo "---" >"$output_file"
-          echo "layout: article" >>"$output_file"
-          echo "title: Volume Text" >>"$output_file"
-          echo "key: page-volume-text" >>"$output_file"
-          echo "---" >>"$output_file"
-          echo "" >>"$output_file"
+          {
+              echo "---"
+              echo "layout: article"
+              echo "title: Volume Text"
+              echo "key: page-volume-text"
+              echo "---"
+              echo ""
+          } >"$output_file"
 
           for volume_dir in worldend-formatting/Volumes/*; do
               config_file="$volume_dir/config.yaml"
@@ -56,49 +58,45 @@ jobs:
               volume=$(yq e '.volume_number' "$config_file")
               padded_volume=$(printf "%02d" "$volume")
 
-              mkdir -p "worldend.github.io/assets/images/chapter/volume_${padded_volume}/"
-              cp -r "$volume_dir/Images/Chapter/"* "worldend.github.io/assets/images/chapter/volume_${padded_volume}/"
+              image_dest_dir="worldend.github.io/assets/images/chapter/volume_${padded_volume}/"
+              mkdir -p "$image_dest_dir"
+              cp -r "$volume_dir/Images/Chapter/"* "$image_dest_dir"
 
               dest_volume_dir="worldend.github.io/_volume_text/volume_${padded_volume}"
               mkdir -p "$dest_volume_dir"
 
+              echo "## Volume $volume" >>"$output_file"
+
               chapter_count=$(yq e '.chapters | length' "$config_file")
+
               for ((chapter_index = 0; chapter_index < chapter_count; chapter_index++)); do
                   chapter_title=$(yq e ".chapters[$chapter_index].title" "$config_file" | sed 's/|/\\|/g')
-                  chapter_parts=$(yq e ".chapters[$chapter_index].parts" "$config_file")
+                  part_count=$(yq e ".chapters[$chapter_index].parts | length" "$config_file")
 
                   chapter_printed=false
                   part_counter=1
 
-                  part_count=$(yq e ".chapters[$chapter_index].parts | length" "$config_file")
                   for ((part_index = 0; part_index < part_count; part_index++)); do
                       part_title=$(yq e ".chapters[$chapter_index].parts[$part_index].title" "$config_file" | sed 's/|/\\|/g')
 
+                      # Print part title or chapter title if there are no parts
                       if [[ $part_title == "null" ]]; then
                           file="$volume_dir/Text/$((chapter_index + 1)).md"
                           header="---\n"
                           header+="layout: article\n"
                           header+="title: Volume $volume - Chapter $((chapter_index + 1)) | $chapter_title\n"
-                          if [[ $part_counter -eq 1 ]]; then
-                              header+="article_header:\n"
-                              header+="  type: cover\n"
-                              header+="  image:\n"
-                              header+="    src: /assets/images/chapter/volume_${padded_volume}/$((chapter_index + 1)).png\n"
-                          fi
-                          header+="---\n"
                       else
                           file="$volume_dir/Text/$((chapter_index + 1)).${part_counter}.md"
                           header="---\n"
                           header+="layout: article\n"
                           header+="title: Volume $volume - Chapter $((chapter_index + 1)), Part $part_counter | $part_title\n"
-                          if [[ $part_counter -eq 1 ]]; then
-                              header+="article_header:\n"
-                              header+="  type: cover\n"
-                              header+="  image:\n"
-                              header+="    src: /assets/images/chapter/volume_${padded_volume}/$((chapter_index + 1)).png\n"
-                          fi
-                          header+="---\n"
                       fi
+
+                      # Add chapter image for the first part of every chapter
+                      if [[ $part_counter -eq 1 ]]; then
+                          header+="article_header:\n  type: cover\n  image:\n    src: /assets/images/chapter/volume_${padded_volume}/$((chapter_index + 1)).png\n"
+                      fi
+                      header+="---\n"
 
                       if [[ -f $file ]]; then
                           cat <(echo -e "$header") "$file" >"$dest_volume_dir/$(basename "$file")"
@@ -106,6 +104,7 @@ jobs:
 
                       file_path="{{ '/volume_text/' | relative_url }}volume_${padded_volume}/$(basename "$file" .md).html"
 
+                      # Put the link in the chapter if there are no parts
                       if [[ $chapter_printed == false ]]; then
                           if [[ $part_title != "null" ]]; then
                               echo "- Chapter $((chapter_index + 1)) \| $chapter_title" >>"$output_file"
@@ -115,8 +114,9 @@ jobs:
                           chapter_printed=true
                       fi
 
+                      # Print link to parts
                       if [[ $part_title != "null" ]]; then
-                          echo "    - [Part $part_counter \| $part_title]($file_path)" >>"$output_file"
+                          echo "  - [Part $part_counter \| $part_title]($file_path)" >>"$output_file"
                       fi
 
                       part_counter=$((part_counter + 1))
