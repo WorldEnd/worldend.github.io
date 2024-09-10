@@ -92,19 +92,20 @@ jobs:
                           file="$volume_dir/Text/$((chapter_index + 1)).md"
                           header="---\n"
                           header+="layout: article\n"
-                          header+="title: Volume $volume - Chapter $((chapter_index + 1)) | $chapter_title\n"
+                          header+="title: Volume $volume – Chapter $((chapter_index + 1)) | $chapter_title\n"
                       else
                           file="$volume_dir/Text/$((chapter_index + 1)).${part_counter}.md"
                           header="---\n"
                           header+="layout: article\n"
-                          header+="title: Volume $volume - Chapter $((chapter_index + 1)), Part $part_counter | $part_title\n"
+                          header+="title: Volume $volume – Chapter $((chapter_index + 1)), Part $part_counter | $part_title\n"
                       fi
+
+                      header+="---\n\n"
 
                       # Add chapter image for the first part of every chapter
                       if [[ $part_counter -eq 1 ]]; then
-                          header+="article_header:\n  type: cover\n  image:\n    src: /assets/images/chapter/volume_${padded_volume}/$((chapter_index + 1)).png\n"
+                          header+="![$chapter_title]({{ '/assets/images/chapter/volume_${padded_volume}/$((chapter_index + 1)).png' | relative_url }}){:.border.shadow.rounded}\n"
                       fi
-                      header+="---\n"
 
                       if [[ -f $file ]]; then
                           cat <(echo -e "$header") "$file" >"$dest_volume_dir/$(basename "$file")"
