@@ -1,4 +1,4 @@
-name: Sync Volume Text
+name: Sync Releases
 
 on:
   workflow_dispatch: # Enables manual run
@@ -38,7 +38,7 @@ jobs:
           path: worldend-formatting
           fetch-depth: 1 # Only fetch the latest commit
 
-      - name: Copy Files
+      - name: Process Files
         run: |
           mkdir -p worldend.github.io/_releases
 
@@ -58,78 +58,101 @@ jobs:
               volume=$(yq e '.volume_number' "$config_file")
               padded_volume=$(printf "%02d" "$volume")
 
-              image_dest_dir="worldend.github.io/assets/images/chapter/volume_${padded_volume}/"
-              mkdir -p "$image_dest_dir"
-              cp -r "$volume_dir/Images/Chapter/"* "$image_dest_dir"
-
               dest_volume_dir="worldend.github.io/_releases/volume_${padded_volume}"
               mkdir -p "$dest_volume_dir"
+
+              image_dest_dir="worldend.github.io/assets/images/volume_${padded_volume}/"
+              chapter_image_dest_dir="$image_dest_dir/chapter/"
+              insert_image_dest_dir="$image_dest_dir/insert/"
+              mkdir -p "$chapter_image_dest_dir"
+              mkdir -p "$insert_image_dest_dir"
+              cp -r "$volume_dir/Images/Chapter/"* "$chapter_image_dest_dir"
+              # cp -r "$volume_dir/Images/Insert/"* "$insert_image_dest_dir"
+
+              {
+                  echo "---"
+                  echo "layout: article"
+                  echo "title: Volume $volume – Front Matter"
+                  echo "---"
+                  echo ""
+              } >"$dest_volume_dir/0.md"
+
+              insert_count=$(yq e '.insert | length' "$volume_dir/Images/config.yaml")
+              for insert in $(seq 1 "$insert_count"); do
+                  insert_image=$(yq e ".insert | keys | .[$((insert - 1))]" "$volume_dir/Images/config.yaml")
+                  image_type=$(yq e ".insert[\"$insert_image\"].image_type" "$volume_dir/Images/config.yaml")
+
+                  if [[ $image_type == "cover" ]]; then
+                      cp "$volume_dir/Images/Insert/$insert_image" "$image_dest_dir/cover.png"
+                      echo -e "![Insert $insert]({{ \"/assets/images/volume_${padded_volume}/cover.png\" | relative_url }}){:.border.shadow.rounded}\n" >>"$dest_volume_dir/0.md"
+                  elif [[ $image_type != "toc" ]]; then
+                      cp "$volume_dir/Images/Insert/$insert_image" "$insert_image_dest_dir"
+                      echo -e "![Insert $insert]({{ \"/assets/images/volume_${padded_volume}/insert/$insert_image\" | relative_url }}){:.border.shadow.rounded}\n" >>"$dest_volume_dir/0.md"
+                  fi
+              done
 
               {
                   echo "## Volume $volume"
                   echo ""
-                  echo "![Volume $volume]({{ '/assets/images/cover_v$padded_volume.png' | relative_url }}){:.image.image--lg.border.shadow.rounded}"
+                  echo "![Volume $volume]({{ \"/assets/images/volume_$padded_volume/cover.png\" | relative_url }}){:.image.image--lg.border.shadow.rounded}"
                   echo ""
                   echo "[Download EPUB](#){:.button.button--primary.button--rounded}"
                   echo "[Download PDF](#){:.button.button--primary.button--rounded}"
                   echo ""
+                  echo "- [Front Matter]({{ \"/releases/volume_${padded_volume}/0.html\" | relative_url }})"
               } >>"$output_file"
 
               chapter_count=$(yq e '.chapters | length' "$config_file")
 
-              for ((chapter_index = 0; chapter_index < chapter_count; chapter_index++)); do
-                  chapter_title=$(yq e ".chapters[$chapter_index].title" "$config_file" | sed 's/|/\\|/g')
-                  part_count=$(yq e ".chapters[$chapter_index].parts | length" "$config_file")
+              for chapter_index in $(seq 1 "$chapter_count"); do
+                  chapter_title=$(yq e ".chapters[$((chapter_index - 1))].title" "$config_file")
+                  part_count=$(yq e ".chapters[$((chapter_index - 1))].parts | length" "$config_file")
 
                   chapter_printed=false
-                  part_counter=1
 
-                  for ((part_index = 0; part_index < part_count; part_index++)); do
-                      part_title=$(yq e ".chapters[$chapter_index].parts[$part_index].title" "$config_file" | sed 's/|/\\|/g')
+                  for part_index in $(seq 1 "$part_count"); do
+                      part_title=$(yq e ".chapters[$((chapter_index - 1))].parts[$((part_index - 1))].title" "$config_file")
 
                       # Print part title or chapter title if there are no parts
                       if [[ $part_title == "null" ]]; then
-                          file="$volume_dir/Text/$((chapter_index + 1)).md"
+                          file="$volume_dir/Text/$chapter_index.md"
                           header="---\n"
                           header+="layout: article\n"
-                          header+="title: Volume $volume – Chapter $((chapter_index + 1)) | $chapter_title\n"
+                          header+="title: Volume $volume – Chapter $chapter_index | $chapter_title\n"
                       else
-                          file="$volume_dir/Text/$((chapter_index + 1)).${part_counter}.md"
+                          file="$volume_dir/Text/$chapter_index.$part_index.md"
                           header="---\n"
                           header+="layout: article\n"
-                          header+="title: Volume $volume – Chapter $((chapter_index + 1)), Part $part_counter | $part_title\n"
+                          header+="title: Volume $volume – Chapter $chapter_index, Part $part_index | $part_title\n"
                       fi
 
                       header+="---\n\n"
 
                       # Add chapter image for the first part of every chapter
-                      if [[ $part_counter -eq 1 ]]; then
-                          header+="![$chapter_title]({{ '/assets/images/chapter/volume_${padded_volume}/$((chapter_index + 1)).png' | relative_url }}){:.border.shadow.rounded}\n"
+                      if [[ $part_index -eq 1 ]]; then
+                          header+="![$chapter_title]({{ \"/assets/images/volume_${padded_volume}/chapter/$(yq e ".chapter | keys | .[$((chapter_index - 1))]" "$volume_dir/Images/config.yaml")\" | relative_url }}){:.border.shadow.rounded}\n"
                       fi
 
                       if [[ -f $file ]]; then
                           cat <(echo -e "$header") "$file" >"$dest_volume_dir/$(basename "$file")"
                       fi
 
-                      file_path="{{ '/releases/' | relative_url }}volume_${padded_volume}/$(basename "$file" .md).html"
+                      file_path="{{ \"/releases/volume_${padded_volume}/$(basename "$file" .md).html\" | relative_url }}"
 
                       # Put the link in the chapter if there are no parts
                       if [[ $chapter_printed == false ]]; then
                           if [[ $part_title != "null" ]]; then
-                              echo "- Chapter $((chapter_index + 1)) \| $chapter_title" >>"$output_file"
+                              echo "- Chapter $chapter_index \| $chapter_title" >>"$output_file"
                           else
-                              echo "- [Chapter $((chapter_index + 1)) \| $chapter_title]($file_path)" >>"$output_file"
+                              echo "- [Chapter $chapter_index \| $chapter_title]($file_path)" >>"$output_file"
                           fi
                           chapter_printed=true
                       fi
 
                       # Print link to parts
                       if [[ $part_title != "null" ]]; then
-                          echo "    - [Part $part_counter \| $part_title]($file_path)" >>"$output_file"
+                          echo "    - [Part $part_index \| $part_title]($file_path)" >>"$output_file"
                       fi
-
-                      part_counter=$((part_counter + 1))
-
                   done
               done
               echo "" >>"$output_file"
@@ -139,6 +162,6 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           repository: worldend.github.io
-          commit_message: Sync Volume Text
+          commit_message: Sync Releases
           skip_fetch: true
           skip_checkout: true
