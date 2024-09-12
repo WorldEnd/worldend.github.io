@@ -99,7 +99,7 @@ jobs:
                   echo "[Download EPUB](#){:.button.button--primary.button--rounded}"
                   echo "[Download PDF](#){:.button.button--primary.button--rounded}"
                   echo ""
-                  echo "- [Front Matter]({{ \"/releases/volume_${padded_volume}/0.html\" | relative_url }})"
+                  echo "-   [Front Matter]({{ \"/releases/volume_${padded_volume}/0.html\" | relative_url }})"
               } >>"$output_file"
 
               chapter_count=$(yq e '.chapters | length' "$config_file")
@@ -142,16 +142,16 @@ jobs:
                       # Put the link in the chapter if there are no parts
                       if [[ $chapter_printed == false ]]; then
                           if [[ $part_title != "null" ]]; then
-                              echo "- Chapter $chapter_index \| $chapter_title" >>"$output_file"
+                              echo "-   Chapter $chapter_index \| $chapter_title" >>"$output_file"
                           else
-                              echo "- [Chapter $chapter_index \| $chapter_title]($file_path)" >>"$output_file"
+                              echo "-   [Chapter $chapter_index \| $chapter_title]($file_path)" >>"$output_file"
                           fi
                           chapter_printed=true
                       fi
 
                       # Print link to parts
                       if [[ $part_title != "null" ]]; then
-                          echo "    - [Part $part_index \| $part_title]($file_path)" >>"$output_file"
+                          echo "    -   [Part $part_index \| $part_title]($file_path)" >>"$output_file"
                       fi
                   done
               done

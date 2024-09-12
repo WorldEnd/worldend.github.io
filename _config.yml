@@ -32,8 +32,6 @@ timezone: America/New_York # see https://en.wikipedia.org/wiki/List_of_tz_databa
 collections:
   releases:
     output: true
-  volume_text:
-    output: true
 # collections_dir: collections
 
 ## => Author and Social
