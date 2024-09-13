@@ -85,7 +85,7 @@ jobs:
                   if [[ $image_type == "cover" ]]; then
                       cp "$volume_dir/Images/Insert/$insert_image" "$image_dest_dir/cover.png"
                       echo -e "![Insert $insert]({{ \"/assets/images/volume_${padded_volume}/cover.png\" | relative_url }}){:.border.shadow.rounded}\n" >>"$dest_volume_dir/0.md"
-                  elif [[ $image_type != "toc" ]]; then
+                  elif [[ $image_type != "toc" && $image_type != "filler" ]]; then
                       cp "$volume_dir/Images/Insert/$insert_image" "$insert_image_dest_dir"
                       echo -e "![Insert $insert]({{ \"/assets/images/volume_${padded_volume}/insert/$insert_image\" | relative_url }}){:.border.shadow.rounded}\n" >>"$dest_volume_dir/0.md"
                   fi
