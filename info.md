@@ -4,6 +4,9 @@ title: Information
 key: page-info
 ---
 
+## Website vs. Google Docs Translation Index
+The [Google Docs Translation Index](https://docs.google.com/document/d/16EOH4sCjJKkgEeGSW4T0kZXWLoove4iBvGZz_hf7xeU/edit) contains unfinished volumes and short side-stories while [our website](http://worldend.github.io/releases.html) has more polished and complete volumes. For example, the Google Docs Translation Index has volume 4 and the Lillia Asplay side story (both unfinished), along with other short bonus stories.
+
 ## EPUBs vs. PDFs
 ### EPUBs
 ![EPUBs]({{ '/assets/images/epubs.png' | relative_url }}){:.image.image--xl.border.shadow.rounded}

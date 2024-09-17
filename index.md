@@ -8,7 +8,8 @@ This site provides PDFs, EPUBs, and a web version of *WorldEnd2 (Suka Moka)* tha
 
 You can read online or download the files on the [Releases]({{ "/releases.html" | relative_url }}) page.
 
-For details on the differences between EPUBs and PDFs, visit the [Info]({{ "/info.html" | relative_url }}) page.
+For details on the differences between EPUBs and PDFs and the difference between our website and our [Google Docs Translation Index](https://docs.google.com/document/d/16EOH4sCjJKkgEeGSW4T0kZXWLoove4iBvGZz_hf7xeU/edit), visit the [Info]({{ "/info.html" | relative_url }}) page.
+{:.info}
 
 These PDFs and EPUBs are generated automatically. If you want to contribute to the formatting or revise the text, feel free to contribute to our [GitHub repository](https://github.com/WorldEnd/worldend-formatting). You can also contribute to the [GitHub repository for this website](https://github.com/WorldEnd/worldend.github.io).
 
