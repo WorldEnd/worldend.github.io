@@ -5,7 +5,6 @@ key: page-releases
 ---
 
 ## Volume 1
-
 ![Volume 1]({{ "/assets/images/volume_01/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
 [Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v01.epub){:.button.button--primary.button--rounded}
@@ -20,7 +19,7 @@ key: page-releases
     -   [Part 4 \| Rumors of the Four]({{ "/releases/volume_01/2.4.html" | relative_url }})
 -   Chapter 3 \| Left and Right Sides of a Breaking Balance
     -   [Part 1 \| Disposable Weapons]({{ "/releases/volume_01/3.1.html" | relative_url }})
-    -   [Part 2 \| Dug Weapon–Compatible Spirits]({{ "/releases/volume_01/3.2.html" | relative_url }})
+    -   [Part 2 \| Dug Weapon-Compatible Spirits]({{ "/releases/volume_01/3.2.html" | relative_url }})
     -   [Part 3 \| A Contentious Pair]({{ "/releases/volume_01/3.3.html" | relative_url }})
     -   [Part 4 \| His Real Face]({{ "/releases/volume_01/3.4.html" | relative_url }})
 -   Chapter 4 \| Chasing, Chasing, After That Admired Back
@@ -30,7 +29,6 @@ key: page-releases
 -   [Chapter 5 \| On These Peaceful Days]({{ "/releases/volume_01/5.html" | relative_url }})
 
 ## Volume 2
-
 ![Volume 2]({{ "/assets/images/volume_02/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
 [Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v02.epub){:.button.button--primary.button--rounded}
@@ -58,7 +56,6 @@ key: page-releases
 -   [Chapter 5 \| Dreams of the Dead]({{ "/releases/volume_02/5.html" | relative_url }})
 
 ## Volume 3
-
 ![Volume 3]({{ "/assets/images/volume_03/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
 [Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v03.epub){:.button.button--primary.button--rounded}
@@ -88,3 +85,5 @@ key: page-releases
     -   [Part 6 \| Who Now Stands Beside]({{ "/releases/volume_03/4.6.html" | relative_url }})
 -   [Chapter 5 \| Lost Kitten]({{ "/releases/volume_03/5.html" | relative_url }})
 
+## Google Docs Translation Index
+For unfinished volumes and side-stories, you can check out our [Google Docs Translation Index](https://docs.google.com/document/d/16EOH4sCjJKkgEeGSW4T0kZXWLoove4iBvGZz_hf7xeU/edit).
