@@ -20,7 +20,7 @@ key: page-releases
     -   [Part 4 \| Rumors of the Four]({{ "/releases/volume_01/2.4.html" | relative_url }})
 -   Chapter 3 \| Left and Right Sides of a Breaking Balance
     -   [Part 1 \| Disposable Weapons]({{ "/releases/volume_01/3.1.html" | relative_url }})
-    -   [Part 2 \| Dug Weapon-Compatible Spirits]({{ "/releases/volume_01/3.2.html" | relative_url }})
+    -   [Part 2 \| Dug Weapon–Compatible Spirits]({{ "/releases/volume_01/3.2.html" | relative_url }})
     -   [Part 3 \| A Contentious Pair]({{ "/releases/volume_01/3.3.html" | relative_url }})
     -   [Part 4 \| His Real Face]({{ "/releases/volume_01/3.4.html" | relative_url }})
 -   Chapter 4 \| Chasing, Chasing, After That Admired Back
