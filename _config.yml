@@ -22,7 +22,7 @@ url: https://worldend.github.io # the base hostname & protocol for your site e.g
 baseurl: # does not include hostname
 title: WorldEnd Formatting
 description: > # this means to ignore newlines until "Language & timezone"
-  PDFs & EPUBs in Yen Press format for WorldEnd2
+  Releases for WorldEnd2 (Suka Moka) that mimic the official Yen Press style
 
 ## => Language and Timezone
 ##############################
