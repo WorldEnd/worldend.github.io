@@ -130,7 +130,6 @@ jobs:
 
               {
                   echo "## Volume $volume"
-                  echo ""
                   echo "![Volume $volume]({{ \"/assets/images/volume_$padded_volume/cover.png\" | relative_url }}){:.image.image--lg.border.shadow.rounded}"
                   echo ""
                   echo "[Download EPUB]($volume_base/WorldEnd2-v${padded_volume}.epub){:.button.button--primary.button--rounded}"
@@ -190,6 +189,11 @@ jobs:
               done
               echo "" >>"$output_file"
           done
+
+          {
+              echo "## Google Docs Translation Index"
+              echo "For unfinished volumes and side-stories, you can check out our [Google Docs Translation Index](https://docs.google.com/document/d/16EOH4sCjJKkgEeGSW4T0kZXWLoove4iBvGZz_hf7xeU/edit)."
+          } >>"$output_file"
 
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@v5
