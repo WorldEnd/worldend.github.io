@@ -19,11 +19,11 @@ jobs:
           path: worldend.github.io
           key: github-pages-repo-${{ runner.os }}-${{ hashFiles('worldend.github.io/*') }}
 
-      - name: Cache Volume Text Repo
+      - name: Cache Volume Text
         uses: actions/cache@v3
         with:
           path: worldend-formatting
-          key: volume-text-repo-${{ runner.os }}-${{ hashFiles('worldend-formatting/Volumes/*') }}
+          key: volume-text-${{ runner.os }}-${{ hashFiles('worldend-formatting/Volumes/*') }}
 
       - name: Checkout GitHub Pages Repo
         uses: actions/checkout@v4
@@ -31,12 +31,51 @@ jobs:
           path: worldend.github.io
           fetch-depth: 1 # Only fetch the latest commit
 
-      - name: Checkout Volume Text Repo
-        uses: actions/checkout@v4
-        with:
-          repository: WorldEnd/worldend-formatting
-          path: worldend-formatting
-          fetch-depth: 1 # Only fetch the latest commit
+      - name: Fetch Latest Release Info
+        run: |
+          owner="WorldEnd"
+          repo="worldend-formatting"
+          url="https://api.github.com/repos/${owner}/${repo}/releases/latest"
+
+          response=$(curl -s "$url")
+
+          if [ $? -ne 0 ]; then
+              echo "Failed to fetch release data."
+              exit 1
+          fi
+
+          tag_name=$(echo "$response" | grep -oP '"tag_name": "\K[^"]+')
+
+          if [ -z "$tag_name" ]; then
+              echo "Tag name not found."
+              exit 1
+          fi
+
+          if [[ $tag_name == v* ]]; then
+              tag_name="${tag_name#v}"
+          fi
+
+          echo "tag_name=$tag_name" >>$GITHUB_ENV
+          echo "source_tar=https://github.com/${owner}/${repo}/archive/refs/tags/v${tag_name}.tar.gz" >>$GITHUB_ENV
+          echo "volume_base=https://github.com/${owner}/${repo}/releases/download/v${tag_name}" >>$GITHUB_ENV
+
+      - name: Download and Extract Release
+        run: |
+          if [ -d "worldend-formatting" ]; then
+              echo "Directory already exists"
+          else
+              echo "Downloading and extracting the tar.gz file for the latest release"
+
+              curl -L -o "worldend-formatting.tar.gz" "$source_tar"
+
+              tar -xzvf "worldend-formatting.tar.gz"
+
+              mv "worldend-formatting-${tag_name}" "worldend-formatting"
+
+              echo "Download and extraction completed successfully."
+
+              rm "worldend-formatting.tar.gz"
+          fi
 
       - name: Process Files
         run: |
@@ -54,7 +93,6 @@ jobs:
 
           for volume_dir in worldend-formatting/Volumes/*; do
               config_file="$volume_dir/config.yaml"
-
               volume=$(yq e '.volume_number' "$config_file")
               padded_volume=$(printf "%02d" "$volume")
 
@@ -67,12 +105,11 @@ jobs:
               mkdir -p "$chapter_image_dest_dir"
               mkdir -p "$insert_image_dest_dir"
               cp -r "$volume_dir/Images/Chapter/"* "$chapter_image_dest_dir"
-              # cp -r "$volume_dir/Images/Insert/"* "$insert_image_dest_dir"
 
               {
                   echo "---"
                   echo "layout: article"
-                  echo "title: Volume $volume – Front Matter"
+                  echo "title: WorldEnd2 Volume $volume – Front Matter"
                   echo "---"
                   echo ""
               } >"$dest_volume_dir/0.md"
@@ -96,8 +133,8 @@ jobs:
                   echo ""
                   echo "![Volume $volume]({{ \"/assets/images/volume_$padded_volume/cover.png\" | relative_url }}){:.image.image--lg.border.shadow.rounded}"
                   echo ""
-                  echo "[Download EPUB](#){:.button.button--primary.button--rounded}"
-                  echo "[Download PDF](#){:.button.button--primary.button--rounded}"
+                  echo "[Download EPUB]($volume_base/WorldEnd2-v${padded_volume}.epub){:.button.button--primary.button--rounded}"
+                  echo "[Download PDF]($volume_base/WorldEnd2-v${padded_volume}.pdf){:.button.button--primary.button--rounded}"
                   echo ""
                   echo "-   [Front Matter]({{ \"/releases/volume_${padded_volume}/0.html\" | relative_url }})"
               } >>"$output_file"
@@ -113,22 +150,20 @@ jobs:
                   for part_index in $(seq 1 "$part_count"); do
                       part_title=$(yq e ".chapters[$((chapter_index - 1))].parts[$((part_index - 1))].title" "$config_file")
 
-                      # Print part title or chapter title if there are no parts
                       if [[ $part_title == "null" ]]; then
                           file="$volume_dir/Text/$chapter_index.md"
                           header="---\n"
                           header+="layout: article\n"
-                          header+="title: Volume $volume – Chapter $chapter_index | $chapter_title\n"
+                          header+="title: WorldEnd2 Volume $volume – Chapter $chapter_index | $chapter_title\n"
                       else
                           file="$volume_dir/Text/$chapter_index.$part_index.md"
                           header="---\n"
                           header+="layout: article\n"
-                          header+="title: Volume $volume – Chapter $chapter_index, Part $part_index | $part_title\n"
+                          header+="title: WorldEnd2 Volume $volume – Chapter $chapter_index, Part $part_index | $part_title\n"
                       fi
 
                       header+="---\n\n"
 
-                      # Add chapter image for the first part of every chapter
                       if [[ $part_index -eq 1 ]]; then
                           header+="![$chapter_title]({{ \"/assets/images/volume_${padded_volume}/chapter/$(yq e ".chapter | keys | .[$((chapter_index - 1))]" "$volume_dir/Images/config.yaml")\" | relative_url }}){:.border.shadow.rounded}\n"
                       fi
@@ -139,7 +174,6 @@ jobs:
 
                       file_path="{{ \"/releases/volume_${padded_volume}/$(basename "$file" .md).html\" | relative_url }}"
 
-                      # Put the link in the chapter if there are no parts
                       if [[ $chapter_printed == false ]]; then
                           if [[ $part_title != "null" ]]; then
                               echo "-   Chapter $chapter_index \| $chapter_title" >>"$output_file"
@@ -149,7 +183,6 @@ jobs:
                           chapter_printed=true
                       fi
 
-                      # Print link to parts
                       if [[ $part_title != "null" ]]; then
                           echo "    -   [Part $part_index \| $part_title]($file_path)" >>"$output_file"
                       fi
