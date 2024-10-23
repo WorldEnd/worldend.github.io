@@ -1,4 +1,4 @@
-# WorldEnd Formatting
+# WorldEnd Formatting Project
 This website displays the Yen Press–formatted releases of *WorldEnd2 (Suka Moka)* in PDF, EPUB, and web formats.
 
 You can find more information on [our website](https://worldend.github.io/).
