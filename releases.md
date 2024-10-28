@@ -7,8 +7,8 @@ key: page-releases
 ## Volume 1
 ![Volume 1]({{ "/assets/images/volume_01/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
-[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v01.epub){:.button.button--primary.button--rounded}
-[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v01.pdf){:.button.button--primary.button--rounded}
+[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.10.0/WorldEnd2-v01.epub){:.button.button--primary.button--rounded}
+[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.10.0/WorldEnd2-v01.pdf){:.button.button--primary.button--rounded}
 
 -   [Front Matter]({{ "/releases/volume_01/0.html" | relative_url }})
 -   [Chapter 1 \| Chasing After That Back]({{ "/releases/volume_01/1.html" | relative_url }})
@@ -31,8 +31,8 @@ key: page-releases
 ## Volume 2
 ![Volume 2]({{ "/assets/images/volume_02/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
-[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v02.epub){:.button.button--primary.button--rounded}
-[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v02.pdf){:.button.button--primary.button--rounded}
+[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.10.0/WorldEnd2-v02.epub){:.button.button--primary.button--rounded}
+[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.10.0/WorldEnd2-v02.pdf){:.button.button--primary.button--rounded}
 
 -   [Front Matter]({{ "/releases/volume_02/0.html" | relative_url }})
 -   [Chapter 1 \| Distant Back]({{ "/releases/volume_02/1.html" | relative_url }})
@@ -58,8 +58,8 @@ key: page-releases
 ## Volume 3
 ![Volume 3]({{ "/assets/images/volume_03/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
-[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v03.epub){:.button.button--primary.button--rounded}
-[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.9.0/WorldEnd2-v03.pdf){:.button.button--primary.button--rounded}
+[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.10.0/WorldEnd2-v03.epub){:.button.button--primary.button--rounded}
+[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v24.10.0/WorldEnd2-v03.pdf){:.button.button--primary.button--rounded}
 
 -   [Front Matter]({{ "/releases/volume_03/0.html" | relative_url }})
 -   [Chapter 1 \| A Somewhat Old Story]({{ "/releases/volume_03/1.html" | relative_url }})
