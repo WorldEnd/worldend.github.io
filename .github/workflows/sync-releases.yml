@@ -14,13 +14,13 @@ jobs:
 
     steps:
       - name: Cache GitHub Pages Repo
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: worldend.github.io
           key: github-pages-repo-${{ runner.os }}-${{ hashFiles('worldend.github.io/*') }}
 
       - name: Cache Volume Text
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: worldend-formatting
           key: volume-text-${{ runner.os }}-${{ hashFiles('worldend-formatting/Volumes/*') }}
