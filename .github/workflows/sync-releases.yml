@@ -13,24 +13,6 @@ jobs:
       contents: write # Allow write permissions to commit and push changes
 
     steps:
-      - name: Cache GitHub Pages Repo
-        uses: actions/cache@v4
-        with:
-          path: worldend.github.io
-          key: github-pages-repo-${{ runner.os }}-${{ hashFiles('worldend.github.io/*') }}
-
-      - name: Cache Volume Text
-        uses: actions/cache@v4
-        with:
-          path: worldend-formatting
-          key: volume-text-${{ runner.os }}-${{ hashFiles('worldend-formatting/Volumes/*') }}
-
-      - name: Checkout GitHub Pages Repo
-        uses: actions/checkout@v4
-        with:
-          path: worldend.github.io
-          fetch-depth: 1 # Only fetch the latest commit
-
       - name: Fetch Latest Release Info
         run: |
           owner="WorldEnd"
@@ -58,6 +40,18 @@ jobs:
           echo "tag_name=$tag_name" >>$GITHUB_ENV
           echo "source_tar=https://github.com/${owner}/${repo}/archive/refs/tags/v${tag_name}.tar.gz" >>$GITHUB_ENV
           echo "volume_base=https://github.com/${owner}/${repo}/releases/download/v${tag_name}" >>$GITHUB_ENV
+
+      - name: Checkout GitHub Pages Repo
+        uses: actions/checkout@v4
+        with:
+          path: worldend.github.io
+          fetch-depth: 1 # Only fetch the latest commit
+
+      - name: Cache Volume Text
+        uses: actions/cache@v4
+        with:
+          path: worldend-formatting
+          key: volume-text-${{ runner.os }}-${{ env.tag_name }}
 
       - name: Download and Extract Release
         run: |
