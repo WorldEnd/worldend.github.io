@@ -33,13 +33,9 @@ jobs:
               exit 1
           fi
 
-          if [[ $tag_name == v* ]]; then
-              tag_name="${tag_name#v}"
-          fi
-
           echo "tag_name=$tag_name" >>$GITHUB_ENV
-          echo "source_tar=https://github.com/${owner}/${repo}/archive/refs/tags/v${tag_name}.tar.gz" >>$GITHUB_ENV
-          echo "volume_base=https://github.com/${owner}/${repo}/releases/download/v${tag_name}" >>$GITHUB_ENV
+          echo "source_tar=https://github.com/${owner}/${repo}/archive/refs/tags/${tag_name}.tar.gz" >>$GITHUB_ENV
+          echo "volume_base=https://github.com/${owner}/${repo}/releases/download/${tag_name}" >>$GITHUB_ENV
 
       - name: Checkout GitHub Pages Repo
         uses: actions/checkout@v4
@@ -64,7 +60,7 @@ jobs:
 
               tar -xzvf "worldend-formatting.tar.gz"
 
-              mv "worldend-formatting-${tag_name}" "worldend-formatting"
+              mv "worldend-formatting-${tag_name#v}" "worldend-formatting"
 
               echo "Download and extraction completed successfully."
 
