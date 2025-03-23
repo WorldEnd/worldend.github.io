@@ -16,6 +16,7 @@ These PDFs and EPUBs are generated automatically. If you want to contribute to t
 ## Changes from Orlandri Translation
 -   Use Yen Press names
 -   Insert and chapter images are in English
+-   Added back covers in English
 -   Minor edits to the text
 -   Follow the Yen Press format as closely as possible, including:
     -   Indented paragraphs
