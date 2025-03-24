@@ -5,12 +5,12 @@ key: page-releases
 ---
 
 ## Volume 1
-![Volume 1]({{ "/assets/images/volume_01/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
+![Volume 1]({{ "/assets/images/volume_01/cover/front.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
 [Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.3.0/WorldEnd2-v01.epub){:.button.button--primary.button--rounded}
 [Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.3.0/WorldEnd2-v01.pdf){:.button.button--primary.button--rounded}
 
--   [Front Matter]({{ "/releases/volume_01/0.html" | relative_url }})
+-   [Illustrations]({{ "/releases/volume_01/0.html" | relative_url }})
 -   [Chapter 1 \| Chasing After That Back]({{ "/releases/volume_01/1.html" | relative_url }})
 -   Chapter 2 \| The City Waiting for the End
     -   [Part 1 \| The Young Fourth Military Officer]({{ "/releases/volume_01/2.1.html" | relative_url }})
@@ -29,12 +29,12 @@ key: page-releases
 -   [Chapter 5 \| On These Peaceful Days]({{ "/releases/volume_01/5.html" | relative_url }})
 
 ## Volume 2
-![Volume 2]({{ "/assets/images/volume_02/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
+![Volume 2]({{ "/assets/images/volume_02/cover/front.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
 [Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.3.0/WorldEnd2-v02.epub){:.button.button--primary.button--rounded}
 [Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.3.0/WorldEnd2-v02.pdf){:.button.button--primary.button--rounded}
 
--   [Front Matter]({{ "/releases/volume_02/0.html" | relative_url }})
+-   [Illustrations]({{ "/releases/volume_02/0.html" | relative_url }})
 -   [Chapter 1 \| Distant Back]({{ "/releases/volume_02/1.html" | relative_url }})
 -   Chapter 2 \| Season of Budding Flowers
     -   [Part 1 \| An Old Man’s Death]({{ "/releases/volume_02/2.1.html" | relative_url }})
@@ -56,12 +56,12 @@ key: page-releases
 -   [Chapter 5 \| Dreams of the Dead]({{ "/releases/volume_02/5.html" | relative_url }})
 
 ## Volume 3
-![Volume 3]({{ "/assets/images/volume_03/cover.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
+![Volume 3]({{ "/assets/images/volume_03/cover/front.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
 [Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.3.0/WorldEnd2-v03.epub){:.button.button--primary.button--rounded}
 [Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.3.0/WorldEnd2-v03.pdf){:.button.button--primary.button--rounded}
 
--   [Front Matter]({{ "/releases/volume_03/0.html" | relative_url }})
+-   [Illustrations]({{ "/releases/volume_03/0.html" | relative_url }})
 -   [Chapter 1 \| A Somewhat Old Story]({{ "/releases/volume_03/1.html" | relative_url }})
 -   Chapter 2 \| Even So, We Live Another Day
     -   [Part 1 \| Smiling Mask]({{ "/releases/volume_03/2.1.html" | relative_url }})
