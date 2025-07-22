@@ -28,7 +28,7 @@ These PDFs and EPUBs are generated automatically. If you want to contribute to t
     -   Capitalization for stutters matches Yen Press (e.g., Wi-widow)
     -   Contractions use closing apostrophes (e.g., move on &rsquo;em)
 
-## Screenshots
+## Images
 ### PDF
 **NOTE:** The actual PDF pages are singular; I just displayed them side-by-side.
 {:.info}
@@ -59,3 +59,10 @@ These PDFs and EPUBs are generated automatically. If you want to contribute to t
 
 ![Home Page]({{ '/assets/screenshots/epub/kindle/home.png' | relative_url }}){: .image--xl .border .shadow .rounded}
 ![Library Page]({{ '/assets/screenshots/epub/kindle/library.png' | relative_url }}){: .image--xl .border .shadow .rounded}
+
+### Printed
+![Front Covers]({{ "/assets/images/print/front.png" | relative_url }}){: .border .shadow .rounded}
+
+![Back Covers]({{ "/assets/images/print/back.png" | relative_url }}){: .border .shadow .rounded}
+
+![Spines]({{ "/assets/images/print/side.png" | relative_url }}){: .border .shadow .rounded}

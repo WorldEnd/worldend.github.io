@@ -30,6 +30,8 @@ These PDFs are best viewed in a two-page layout, starting with the cover on the 
 [^1]: Adobe Acrobat Reader, Mac Preview, Firefox (PDF.js), SumatraPDF, Foxit, Okular, Evince, and Zathura all support this functionality. While Google Chrome / Chromium can display pages side-by-side, it can't put the cover on the right side. If you prefer using Chrome, you can use the print dialog to save a new PDF without the cover.
 
 ## Printing
+![Printed Volumes]({{ '/assets/images/print/front.png' | relative_url }}){:.image.image--xl.border.shadow.rounded}
+
 To print these volumes, you need to understand [bleed](https://printing.umn.edu/tools/what-is-bleed.html) and [gutter](https://www.printivity.com/insights/how-to-design-for-gutter-margins). Since these settings vary depending on the printing service, PDFs must be generated on a case-by-case basis using our [Python scripts](https://github.com/WorldEnd/worldend-formatting).
 
 Since page thickness affects spine width, the cover spread must also be adjusted accordingly. Sample cover spread PSD files are available [here](https://drive.google.com/drive/folders/1YEETsnXm3C5z-xG6uzCyq3WWyyrcIvXz?usp=sharing), but specific measurements will have to be changed. You can generate the required bleed for the front and back cover images by running our Python scripts and navigating to `$OUTPUT_DIR/WorkDir/TeX/Cover/`.
