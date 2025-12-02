@@ -30,7 +30,7 @@ These PDFs and EPUBs are generated automatically. If you want to contribute to t
 
 ## Images
 ### PDF
-**NOTE:** The actual PDF pages are singular; I just displayed them side-by-side.
+**NOTE:** The actual PDF pages are singular; they are just displayed side-by-side in these images.
 {:.info}
 
 ![Double Page]({{ "/assets/screenshots/pdf/doublepage.png" | relative_url }}){: .border .shadow .rounded}
