@@ -106,40 +106,42 @@ jobs:
                   echo ""
               } >"$dest_volume_dir/0.md"
           
-              cover_count=$(yq e '.cover | length' "$volume_dir/Images/config.yaml")
-              for cover in $(seq 1 "$cover_count"); do
-                  cover_image=$(yq e ".cover | keys | .[$((cover - 1))]" "$volume_dir/Images/config.yaml")
-                  image_type=$(yq e ".cover[\"$cover_image\"].image_type" "$volume_dir/Images/config.yaml")
-          
-                  if [[ $image_type == "front_cover" ]]; then
-                      cp "$volume_dir/Images/Cover/$cover_image" "worldend.github.io/$cover_image_dest_dir/front.png"
-                      {
-                          echo "## Front Cover"
-                          echo -e "![Front Cover]({{ \"/$cover_image_dest_dir/front.png\" | relative_url }}){:.border.shadow.rounded}\n"
-                      } >>"$dest_volume_dir/0.md"
-                  elif [[ $image_type == "back_cover" ]]; then
-                      back_cover="$cover_image"
-                  fi
-              done
+              front_cover_path=$(yq e '.front_cover.filepath // ""' "$volume_dir/Images/config.yaml")
+              back_cover_path=$(yq e '.back_cover.filepath // ""' "$volume_dir/Images/config.yaml")
+
+              back_cover=""
+
+              if [[ -n $front_cover_path ]]; then
+                  cp "$volume_dir/Images/$front_cover_path" "worldend.github.io/$cover_image_dest_dir/front.png"
+                  {
+                      echo "## Front Cover"
+                      echo -e "![Front Cover]({{ \"/$cover_image_dest_dir/front.png\" | relative_url }}){:.border.shadow.rounded}\n"
+                  } >>"$dest_volume_dir/0.md"
+              fi
+
+              if [[ -n $back_cover_path ]]; then
+                  back_cover="$back_cover_path"
+              fi
           
               insert_count=$(yq e '.insert | length' "$volume_dir/Images/config.yaml")
-          
+
               if [[ $insert_count -gt 0 ]]; then
                   echo "## Inserts" >>"$dest_volume_dir/0.md"
               fi
-          
-              for insert in $(seq 1 "$insert_count"); do
-                  insert_image=$(yq e ".insert | keys | .[$((insert - 1))]" "$volume_dir/Images/config.yaml")
-                  image_type=$(yq e ".insert[\"$insert_image\"].image_type" "$volume_dir/Images/config.yaml")
-          
+
+              for insert in $(seq 0 $((insert_count - 1))); do
+                  insert_path=$(yq e ".insert[$insert].filepath" "$volume_dir/Images/config.yaml")
+                  image_type=$(yq e ".insert[$insert].image_type" "$volume_dir/Images/config.yaml")
+                  insert_file=$(basename "$insert_path")
+
                   if [[ $image_type != "toc" && $image_type != "filler" ]]; then
-                      cp "$volume_dir/Images/Insert/$insert_image" "worldend.github.io/$insert_image_dest_dir"
-                      echo -e "![Insert $insert]({{ \"/$insert_image_dest_dir/$insert_image\" | relative_url }}){:.border.shadow.rounded}\n" >>"$dest_volume_dir/0.md"
+                      cp "$volume_dir/Images/$insert_path" "worldend.github.io/$insert_image_dest_dir/$insert_file"
+                      echo -e "![Insert $((insert + 1))]({{ \"/$insert_image_dest_dir/$insert_file\" | relative_url }}){:.border.shadow.rounded}\n" >>"$dest_volume_dir/0.md"
                   fi
               done
           
               if [[ -n $back_cover ]]; then
-                  cp "$volume_dir/Images/Cover/$back_cover" "worldend.github.io/$cover_image_dest_dir/back.png"
+                  cp "$volume_dir/Images/$back_cover" "worldend.github.io/$cover_image_dest_dir/back.png"
           
                   {
                       echo "## Back Cover"
@@ -183,7 +185,11 @@ jobs:
                       header+="---\n\n"
           
                       if [[ $part_index -eq 1 ]]; then
-                          header+="![$chapter_title]({{ \"/assets/images/volume_${padded_volume}/chapter/$(yq e ".chapter | keys | .[$((chapter_index - 1))]" "$volume_dir/Images/config.yaml")\" | relative_url }}){:.border.shadow.rounded}\n"
+                          chapter_image_path=$(yq e ".chapter.$chapter_index.filepath // \"\"" "$volume_dir/Images/config.yaml")
+                          if [[ -n $chapter_image_path ]]; then
+                              chapter_image_file=$(basename "$chapter_image_path")
+                              header+="![$chapter_title]({{ \"/assets/images/volume_${padded_volume}/chapter/$chapter_image_file\" | relative_url }}){:.border.shadow.rounded}\n"
+                          fi
                       fi
           
                       if [[ -f $file ]]; then
