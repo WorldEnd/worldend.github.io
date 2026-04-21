@@ -7,8 +7,8 @@ key: page-releases
 ## Volume 1
 ![Volume 1]({{ "/assets/images/volume_01/cover/front.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
-[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.4.0/WorldEnd2-v01.epub){:.button.button--primary.button--rounded}
-[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.4.0/WorldEnd2-v01.pdf){:.button.button--primary.button--rounded}
+[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v01.epub){:.button.button--primary.button--rounded}
+[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v01.pdf){:.button.button--primary.button--rounded}
 
 -   [Illustrations]({{ "/releases/volume_01/0.html" | relative_url }})
 -   [Chapter 1 \| Chasing After That Back]({{ "/releases/volume_01/1.html" | relative_url }})
@@ -31,8 +31,8 @@ key: page-releases
 ## Volume 2
 ![Volume 2]({{ "/assets/images/volume_02/cover/front.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
-[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.4.0/WorldEnd2-v02.epub){:.button.button--primary.button--rounded}
-[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.4.0/WorldEnd2-v02.pdf){:.button.button--primary.button--rounded}
+[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v02.epub){:.button.button--primary.button--rounded}
+[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v02.pdf){:.button.button--primary.button--rounded}
 
 -   [Illustrations]({{ "/releases/volume_02/0.html" | relative_url }})
 -   [Chapter 1 \| Distant Back]({{ "/releases/volume_02/1.html" | relative_url }})
@@ -58,8 +58,8 @@ key: page-releases
 ## Volume 3
 ![Volume 3]({{ "/assets/images/volume_03/cover/front.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
 
-[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.4.0/WorldEnd2-v03.epub){:.button.button--primary.button--rounded}
-[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/v25.4.0/WorldEnd2-v03.pdf){:.button.button--primary.button--rounded}
+[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v03.epub){:.button.button--primary.button--rounded}
+[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v03.pdf){:.button.button--primary.button--rounded}
 
 -   [Illustrations]({{ "/releases/volume_03/0.html" | relative_url }})
 -   [Chapter 1 \| A Somewhat Old Story]({{ "/releases/volume_03/1.html" | relative_url }})
@@ -84,6 +84,27 @@ key: page-releases
     -   [Part 5 \| Who Stands in the Way]({{ "/releases/volume_03/4.5.html" | relative_url }})
     -   [Part 6 \| Who Now Stands Beside]({{ "/releases/volume_03/4.6.html" | relative_url }})
 -   [Chapter 5 \| Lost Kitten]({{ "/releases/volume_03/5.html" | relative_url }})
+
+## Volume 4
+![Volume 4]({{ "/assets/images/volume_04/cover/front.png" | relative_url }}){:.image.image--lg.border.shadow.rounded}
+
+[Download EPUB](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v04.epub){:.button.button--primary.button--rounded}
+[Download PDF](https://github.com/WorldEnd/worldend-formatting/releases/download/26.4.0/WorldEnd2-v04.pdf){:.button.button--primary.button--rounded}
+
+-   [Illustrations]({{ "/releases/volume_04/0.html" | relative_url }})
+-   [Chapter 1 \| A Self-Indulgent Fantasy]({{ "/releases/volume_04/1.html" | relative_url }})
+-   Chapter 2 \| Go After That Felon, And—
+    -   [Part 1 \| That Day at the 5th Division]({{ "/releases/volume_04/2.1.html" | relative_url }})
+    -   [Part 2 \| Feodor Jessman]({{ "/releases/volume_04/2.2.html" | relative_url }})
+    -   [Part 3 \| Reunion]({{ "/releases/volume_04/2.3.html" | relative_url }})
+    -   [Part 4 \| The Young Man in a Black Suit]({{ "/releases/volume_04/2.4.html" | relative_url }})
+    -   [Part 5 \| The Pair in the Darkness]({{ "/releases/volume_04/2.5.html" | relative_url }})
+    -   [Part 6 \| The Winged Guard’s 1st Division]({{ "/releases/volume_04/2.6.html" | relative_url }})
+-   Chapter 3 \| A Conversation With the Voiceless, Or…
+    -   [Part 1 \| Fugitives]({{ "/releases/volume_04/3.1.html" | relative_url }})
+    -   [Part 2 \| A Running Boy, a Chasing Girl]({{ "/releases/volume_04/3.2.html" | relative_url }})
+    -   [Part 3 \| The Woman Named Odette Gundakar]({{ "/releases/volume_04/3.3.html" | relative_url }})
+    -   [Part 4 \| Enjoying Trendy Desserts in a Trendy City]({{ "/releases/volume_04/3.4.html" | relative_url }})
 
 ## Google Docs Translation Index
 For unfinished volumes and side-stories, you can check out our [Google Docs Translation Index](https://docs.google.com/document/d/16EOH4sCjJKkgEeGSW4T0kZXWLoove4iBvGZz_hf7xeU/edit).
