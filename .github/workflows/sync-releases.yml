@@ -70,7 +70,7 @@ jobs:
       - name: Process Files
         run: |
           mkdir -p worldend.github.io/_releases
-          
+
           output_file="worldend.github.io/releases.md"
           {
               echo "---"
@@ -80,15 +80,16 @@ jobs:
               echo "---"
               echo ""
           } >"$output_file"
-          
+
           for volume_dir in worldend-formatting/Volumes/*; do
               config_file="$volume_dir/config.yaml"
               volume=$(yq e '.volume_number' "$config_file")
               padded_volume=$(printf "%02d" "$volume")
-          
+              in_progress=$(yq e '.in_progress // false' "$config_file")
+
               dest_volume_dir="worldend.github.io/_releases/volume_${padded_volume}"
               mkdir -p "$dest_volume_dir"
-          
+
               image_dest_dir="assets/images/volume_${padded_volume}"
               cover_image_dest_dir="$image_dest_dir/cover"
               chapter_image_dest_dir="$image_dest_dir/chapter"
@@ -97,7 +98,7 @@ jobs:
               mkdir -p "worldend.github.io/$chapter_image_dest_dir"
               mkdir -p "worldend.github.io/$insert_image_dest_dir"
               cp -r "$volume_dir/Images/Chapter/"* "worldend.github.io/$chapter_image_dest_dir"
-          
+
               {
                   echo "---"
                   echo "layout: article"
@@ -105,7 +106,7 @@ jobs:
                   echo "---"
                   echo ""
               } >"$dest_volume_dir/0.md"
-          
+
               front_cover_path=$(yq e '.front_cover.filepath // ""' "$volume_dir/Images/config.yaml")
               back_cover_path=$(yq e '.back_cover.filepath // ""' "$volume_dir/Images/config.yaml")
 
@@ -122,7 +123,7 @@ jobs:
               if [[ -n $back_cover_path ]]; then
                   back_cover="$back_cover_path"
               fi
-          
+
               insert_count=$(yq e '.insert | length' "$volume_dir/Images/config.yaml")
 
               if [[ $insert_count -gt 0 ]]; then
@@ -139,37 +140,44 @@ jobs:
                       echo -e "![Insert $((insert + 1))]({{ \"/$insert_image_dest_dir/$insert_file\" | relative_url }}){:.border.shadow.rounded}\n" >>"$dest_volume_dir/0.md"
                   fi
               done
-          
+
               if [[ -n $back_cover ]]; then
                   cp "$volume_dir/Images/$back_cover" "worldend.github.io/$cover_image_dest_dir/back.png"
-          
+
                   {
                       echo "## Back Cover"
                       echo -e "![Back Cover]({{ \"/$cover_image_dest_dir/back.png\" | relative_url }}){:.border.shadow.rounded}\n"
                   } >>"$dest_volume_dir/0.md"
               fi
-          
+
               {
                   echo "## Volume $volume"
                   echo "![Volume $volume]({{ \"/$cover_image_dest_dir/front.png\" | relative_url }}){:.image.image--lg.border.shadow.rounded}"
                   echo ""
-                  echo "[Download EPUB]($volume_base/WorldEnd2-v${padded_volume}.epub){:.button.button--primary.button--rounded}"
-                  echo "[Download PDF]($volume_base/WorldEnd2-v${padded_volume}.pdf){:.button.button--primary.button--rounded}"
+              
+                  if [[ "$in_progress" == "true" ]]; then
+                      echo "**In Progress:** EPUB and PDF downloads are not available yet."
+                      echo "{:.warning}"
+                  else
+                      echo "[Download EPUB]($volume_base/WorldEnd2-v${padded_volume}.epub){:.button.button--primary.button--rounded}"
+                      echo "[Download PDF]($volume_base/WorldEnd2-v${padded_volume}.pdf){:.button.button--primary.button--rounded}"
+                  fi
+              
                   echo ""
                   echo "-   [Illustrations]({{ \"/releases/volume_${padded_volume}/0.html\" | relative_url }})"
               } >>"$output_file"
-          
+
               chapter_count=$(yq e '.chapters | length' "$config_file")
-          
+
               for chapter_index in $(seq 1 "$chapter_count"); do
                   chapter_title=$(yq e ".chapters[$((chapter_index - 1))].title" "$config_file")
                   part_count=$(yq e ".chapters[$((chapter_index - 1))].parts | length" "$config_file")
-          
+
                   chapter_printed=false
-          
+
                   for part_index in $(seq 1 "$part_count"); do
                       part_title=$(yq e ".chapters[$((chapter_index - 1))].parts[$((part_index - 1))].title" "$config_file")
-          
+
                       if [[ $part_title == "null" ]]; then
                           file="$volume_dir/Text/$chapter_index.md"
                           header="---\n"
@@ -181,9 +189,9 @@ jobs:
                           header+="layout: article\n"
                           header+="title: WorldEnd2 Volume $volume – Chapter $chapter_index, Part $part_index | $part_title\n"
                       fi
-          
+
                       header+="---\n\n"
-          
+
                       if [[ $part_index -eq 1 ]]; then
                           chapter_image_path=$(yq e ".chapter.$chapter_index.filepath // \"\"" "$volume_dir/Images/config.yaml")
                           if [[ -n $chapter_image_path ]]; then
@@ -191,13 +199,13 @@ jobs:
                               header+="![$chapter_title]({{ \"/assets/images/volume_${padded_volume}/chapter/$chapter_image_file\" | relative_url }}){:.border.shadow.rounded}\n"
                           fi
                       fi
-          
+
                       if [[ -f $file ]]; then
                           cat <(echo -e "$header") "$file" >"$dest_volume_dir/$(basename "$file")"
                       fi
-          
+
                       file_path="{{ \"/releases/volume_${padded_volume}/$(basename "$file" .md).html\" | relative_url }}"
-          
+
                       if [[ $chapter_printed == false ]]; then
                           if [[ $part_title != "null" ]]; then
                               echo "-   Chapter $chapter_index \| $chapter_title" >>"$output_file"
@@ -206,7 +214,7 @@ jobs:
                           fi
                           chapter_printed=true
                       fi
-          
+
                       if [[ $part_title != "null" ]]; then
                           echo "    -   [Part $part_index \| $part_title]($file_path)" >>"$output_file"
                       fi
@@ -214,12 +222,11 @@ jobs:
               done
               echo "" >>"$output_file"
           done
-          
+
           {
               echo "## Google Docs Translation Index"
               echo "For unfinished volumes and side-stories, you can check out our [Google Docs Translation Index](https://docs.google.com/document/d/16EOH4sCjJKkgEeGSW4T0kZXWLoove4iBvGZz_hf7xeU/edit)."
           } >>"$output_file"
-
 
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@v5
