@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem "erb"
+
 # gem "jekyll-text-theme", path: "../"
 gem "jekyll-text-theme"
 gem "jekyll-remote-theme"
