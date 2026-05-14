@@ -82,7 +82,18 @@ jobs:
           } >"$output_file"
 
           for volume_dir in worldend-formatting/Volumes/*; do
+              if [ ! -d "$volume_dir" ]; then
+                  echo "Skipping non-directory: $volume_dir"
+                  continue
+              fi
+              
               config_file="$volume_dir/config.yaml"
+              
+              if [ ! -f "$config_file" ]; then
+                  echo "Warning: $config_file not found, skipping $volume_dir"
+                  continue
+              fi
+              
               volume=$(yq e '.volume_number' "$config_file")
               padded_volume=$(printf "%02d" "$volume")
               in_progress=$(yq e '.in_progress // false' "$config_file")
